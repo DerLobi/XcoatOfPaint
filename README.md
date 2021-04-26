@@ -1,5 +1,5 @@
 # XcoatOfPaint
-![](xcoats.png)
+![](Xcoats.png)
 
 Have you ever wished the Xcode icon could get a fresh coat of paint to match the colorful Mac you just bought?
 
