@@ -1,5 +1,5 @@
 # XcoatOfPaint
-![](Xcoats.png)
+<img srcset="Xcoats.png 2x">
 
 Have you ever wished the Xcode icon could get a fresh coat of paint to match the colorful Mac you just bought?
 
@@ -11,7 +11,7 @@ Download the latest release from [GitHub](https://github.com/DerLobi/XcoatOfPain
 Just download the project and _"Build and Run"_ from Xcode.
 
 ## Usage
-![](app.png)
+<img srcset="app.png 2x">
 
 * Drag the Xcode app onto the left side of the app
 * Change hue, saturation and brightness to your liking
