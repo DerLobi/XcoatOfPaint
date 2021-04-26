@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA09FF7526372F8500EAD209 /* ImageSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA09FF6E26372F8500EAD209 /* ImageSet.swift */; };
+		CA09FF7626372F8500EAD209 /* AssetsCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA09FF7126372F8500EAD209 /* AssetsCatalog.swift */; };
+		CA09FF7726372F8500EAD209 /* CoreUI_Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA09FF7226372F8500EAD209 /* CoreUI_Swift.swift */; };
+		CA09FF912637312C00EAD209 /* CoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA09FF902637312C00EAD209 /* CoreUI.framework */; };
+		CA09FF922637312C00EAD209 /* CoreUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA09FF902637312C00EAD209 /* CoreUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CAB752C62635B1B000CA5396 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB752C52635B1B000CA5396 /* AppDelegate.swift */; };
 		CAB752C82635B1B000CA5396 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB752C72635B1B000CA5396 /* ViewController.swift */; };
 		CAB752CA2635B1B100CA5396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB752C92635B1B100CA5396 /* Assets.xcassets */; };
@@ -18,7 +23,27 @@
 		CAB752E92635CBFD00CA5396 /* HueSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB752E82635CBFD00CA5396 /* HueSlider.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CA09FF932637312C00EAD209 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CA09FF922637312C00EAD209 /* CoreUI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		CA09FF6E26372F8500EAD209 /* ImageSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSet.swift; sourceTree = "<group>"; };
+		CA09FF7026372F8500EAD209 /* CoreUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreUI.h; sourceTree = "<group>"; };
+		CA09FF7126372F8500EAD209 /* AssetsCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetsCatalog.swift; sourceTree = "<group>"; };
+		CA09FF7226372F8500EAD209 /* CoreUI_Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreUI_Swift.swift; sourceTree = "<group>"; };
+		CA09FF7B26372FC000EAD209 /* XcoatOfPaint-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XcoatOfPaint-Bridging-Header.h"; sourceTree = "<group>"; };
+		CA09FF902637312C00EAD209 /* CoreUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreUI.framework; path = ../../../../System/Library/PrivateFrameworks/CoreUI.framework; sourceTree = "<group>"; };
 		CAB752C22635B1B000CA5396 /* XcoatOfPaint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcoatOfPaint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB752C52635B1B000CA5396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAB752C72635B1B000CA5396 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,17 +63,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA09FF912637312C00EAD209 /* CoreUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA09FF6D26372F8500EAD209 /* acextract */ = {
+			isa = PBXGroup;
+			children = (
+				CA09FF6E26372F8500EAD209 /* ImageSet.swift */,
+				CA09FF7026372F8500EAD209 /* CoreUI.h */,
+				CA09FF7126372F8500EAD209 /* AssetsCatalog.swift */,
+				CA09FF7226372F8500EAD209 /* CoreUI_Swift.swift */,
+			);
+			path = acextract;
+			sourceTree = "<group>";
+		};
+		CA09FF8F2637312C00EAD209 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA09FF902637312C00EAD209 /* CoreUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CAB752B92635B1B000CA5396 = {
 			isa = PBXGroup;
 			children = (
 				CAB752C42635B1B000CA5396 /* XcoatOfPaint */,
 				CAB752C32635B1B000CA5396 /* Products */,
+				CA09FF8F2637312C00EAD209 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +109,8 @@
 		CAB752C42635B1B000CA5396 /* XcoatOfPaint */ = {
 			isa = PBXGroup;
 			children = (
+				CA09FF7B26372FC000EAD209 /* XcoatOfPaint-Bridging-Header.h */,
+				CA09FF6D26372F8500EAD209 /* acextract */,
 				CAB752C52635B1B000CA5396 /* AppDelegate.swift */,
 				CAB752C92635B1B100CA5396 /* Assets.xcassets */,
 				CAB752DC2635B92100CA5396 /* FileDropImageView.swift */,
@@ -88,6 +136,7 @@
 				CAB752BE2635B1B000CA5396 /* Sources */,
 				CAB752BF2635B1B000CA5396 /* Frameworks */,
 				CAB752C02635B1B000CA5396 /* Resources */,
+				CA09FF932637312C00EAD209 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -147,10 +196,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA09FF7726372F8500EAD209 /* CoreUI_Swift.swift in Sources */,
+				CA09FF7526372F8500EAD209 /* ImageSet.swift in Sources */,
 				CAB752E02635C27400CA5396 /* RGBtoHSV.swift in Sources */,
 				CAB752D72635B1F400CA5396 /* ImageEditor.swift in Sources */,
 				CAB752C82635B1B000CA5396 /* ViewController.swift in Sources */,
 				CAB752DD2635B92100CA5396 /* FileDropImageView.swift in Sources */,
+				CA09FF7626372F8500EAD209 /* AssetsCatalog.swift in Sources */,
 				CAB752E92635CBFD00CA5396 /* HueSlider.swift in Sources */,
 				CAB752C62635B1B000CA5396 /* AppDelegate.swift in Sources */,
 				CAB752DA2635B28700CA5396 /* XcodeManager.swift in Sources */,
@@ -296,6 +348,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = ES9894LW4A;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
 				INFOPLIST_FILE = XcoatOfPaint/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -303,6 +356,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.christian-lobach.XcoatOfPaint";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XcoatOfPaint/XcoatOfPaint-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -317,6 +371,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = ES9894LW4A;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
 				INFOPLIST_FILE = XcoatOfPaint/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -324,6 +379,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.christian-lobach.XcoatOfPaint";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XcoatOfPaint/XcoatOfPaint-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
