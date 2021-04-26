@@ -5,7 +5,7 @@ Have you ever wished the Xcode icon could get a fresh coat of paint to match the
 
 ## How to run
 ### Prebuilt release
-Download the latest release from [GitHub](https://github.com/DerLobi/XcoatOfPaint/releases)
+Download the latest release from [GitHub](https://github.com/DerLobi/XcoatOfPaint/releases/latest)
 
 ### Build from source
 Just download the project and _"Build and Run"_ from Xcode.
@@ -29,4 +29,3 @@ To restore the original icon, click on "Restore default Xcode icon" or, select t
 ## 3rd party components
 * Color cube code taken from [https://github.com/trav-ma/TMReplaceColorHue](https://github.com/trav-ma/TMReplaceColorHue)
 * Compiled asset catalog extraction code taken from [https://github.com/bartoszj/acextract](https://github.com/bartoszj/acextract)
-* 
