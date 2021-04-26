@@ -28,3 +28,5 @@ To restore the original icon, click on "Restore default Xcode icon" or, select t
 
 ## 3rd party components
 * Color cube code taken from [https://github.com/trav-ma/TMReplaceColorHue](https://github.com/trav-ma/TMReplaceColorHue)
+* Compiled asset catalog extraction code taken from [https://github.com/bartoszj/acextract](https://github.com/bartoszj/acextract)
+* 
