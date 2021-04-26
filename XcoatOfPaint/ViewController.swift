@@ -19,7 +19,7 @@ class ViewController: NSViewController {
 
         sourceImageView.didReceiveFile = { [weak self] fileURL in
             self?.xcodeManager.xcodeURL = fileURL
-            self?.imageEditor.icnsURL = self?.xcodeManager.icnsURL
+            self?.imageEditor.inputImage = self?.xcodeManager.xcodeIcon
         }
     }
 

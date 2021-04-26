@@ -49,8 +49,39 @@ class XcodeManager {
 
     var xcodeURL: URL?
 
-    var icnsURL: URL? {
-        xcodeURL?.appendingPathComponent("Contents/Resources/Xcode.icns")
+    var xcodeIcon: NSImage? {
+        iconFromAssetCatalog ?? iconFromICNS
+    }
+
+    private var iconFromICNS: NSImage? {
+        guard let icnsURL = xcodeURL?.appendingPathComponent("Contents/Resources/Xcode.icns") else { return nil }
+        let data = try? Data(contentsOf: icnsURL)
+        let image = data.flatMap(NSImage.init(data:))
+        return image
+    }
+
+    var iconFromAssetCatalog: NSImage? {
+        guard let path = xcodeURL?.appendingPathComponent("Contents/Resources/Assets.car").path else { return nil }
+        let catalog = try? AssetsCatalog(path: path)
+        let imageSet = catalog?.imageSet(withName: "Xcode")
+        let mutableData = NSMutableData()
+
+        guard let bestImage = imageSet?.namedImages
+                .sorted(by: { $0.size.width * CGFloat($0.scale) > $1.size.width * CGFloat($1.scale) })[1],
+              let cgImage = bestImage
+                ._rendition()
+                .unslicedImage()?
+                .takeUnretainedValue(),
+              let destination = CGImageDestinationCreateWithData(mutableData as CFMutableData,
+                                                                 kUTTypePNG,
+                                                                 1,
+                                                                 nil)
+                else { return nil}
+        CGImageDestinationAddImage(destination, cgImage, nil)
+        guard CGImageDestinationFinalize(destination) else { return nil }
+
+        let nsImage = NSImage(data: mutableData as Data)        
+        return nsImage
     }
 
     func replaceIcon(with image: NSImage) throws {

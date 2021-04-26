@@ -12,20 +12,11 @@ import Combine
 // https://github.com/trav-ma/TMReplaceColorHue/blob/master/TMReplaceColorHue/ViewController.swift
 class ImageEditor: NSObject {
 
-    var icnsURL: URL? {
-        didSet {
-            guard let icnsURL = icnsURL else { return }
-            let data = try? Data(contentsOf: icnsURL)
-            let image = data.flatMap(NSImage.init(data:))
-            inputImage = image
-        }
-    }
-
     @objc var brightnessAdjustment: Float = 0
     @objc var saturationAdjustment: Float = 0
     @objc var destCenterHueAngle: Float = 0.57
 
-    @objc dynamic private(set) var inputImage: NSImage?
+    @objc dynamic var inputImage: NSImage?
 
     @objc dynamic var outputImage: NSImage?
 
