@@ -8,5 +8,9 @@
 	<true/>
 	<key>com.apple.security.files.user-selected.executable</key>
 	<true/>
+	<key>com.apple.security.temporary-exception.apple-events</key>
+	<array>
+		<string>com.apple.dock</string>
+	</array>
 </dict>
 </plist>

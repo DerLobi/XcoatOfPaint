@@ -90,7 +90,11 @@ class XcodeManager {
                                                  forFile: xcodeURL.path,
                                                  options: [])
 
-        if iconChangeSuccessful { return }
+        if iconChangeSuccessful {
+            reloadDockIfNeeded()
+            return
+        }
+
 
         let pasteboard = NSPasteboard.withUniqueName()
         pasteboard.declareTypes([.fileURL], owner: nil)
@@ -112,15 +116,26 @@ class XcodeManager {
         let iconChangeSuccessful = NSWorkspace.shared.setIcon(nil,
                                                               forFile: xcodeURL.path,
                                                               options: [])
-        if !iconChangeSuccessful {
-            let pasteboard = NSPasteboard.withUniqueName()
-            pasteboard.declareTypes([.fileURL], owner: nil)
-            (xcodeURL as NSURL).write(to: pasteboard)
-            throw XcodeManagerError(errorType: .needsToRemoveInGetInfo,
-                                    recoveryAction: RecoveryAction(title: "Open \"Xcode Info\" dialog") {
-                                        NSPerformService("Finder/Show Info", pasteboard)
-                                    })
+        if iconChangeSuccessful {
+            reloadDockIfNeeded()
+            return
+        }
 
+        let pasteboard = NSPasteboard.withUniqueName()
+        pasteboard.declareTypes([.fileURL], owner: nil)
+        (xcodeURL as NSURL).write(to: pasteboard)
+        
+        throw XcodeManagerError(errorType: .needsToRemoveInGetInfo,
+                                recoveryAction: RecoveryAction(title: "Open \"Xcode Info\" dialog") {
+                                    NSPerformService("Finder/Show Info", pasteboard)
+                                })
+    }
+
+    private func reloadDockIfNeeded() {
+        let runningApps = NSWorkspace.shared.runningApplications
+        if runningApps.contains(where: { $0.bundleURL == xcodeURL }) {
+            let dock = runningApps.first { $0.bundleIdentifier == "com.apple.dock" }
+            dock?.terminate()
         }
     }
 }
