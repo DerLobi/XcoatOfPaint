@@ -7,7 +7,7 @@ XcoatOfPaint lets you do this by simply adjusting a few sliders.
 
 ## How to run
 ### Prebuilt release
-Download the latest release from [GitHub](https://github.com/DerLobi/XcoatOfPaint/releases/latest)
+Download the latest release from [GitHub](https://github.com/DerLobi/XcoatOfPaint/releases/latest/download/XcoatOfPaint.zip)
 
 Requires macOS 11 Big Sur
 
