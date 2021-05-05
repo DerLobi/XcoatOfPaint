@@ -43,7 +43,7 @@
 		CA09FF7126372F8500EAD209 /* AssetsCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetsCatalog.swift; sourceTree = "<group>"; };
 		CA09FF7226372F8500EAD209 /* CoreUI_Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreUI_Swift.swift; sourceTree = "<group>"; };
 		CA09FF7B26372FC000EAD209 /* XcoatOfPaint-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XcoatOfPaint-Bridging-Header.h"; sourceTree = "<group>"; };
-		CA09FF902637312C00EAD209 /* CoreUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreUI.framework; path = ../../../../System/Library/PrivateFrameworks/CoreUI.framework; sourceTree = "<group>"; };
+		CA09FF902637312C00EAD209 /* CoreUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreUI.framework; path = "$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/CoreUI.framework"; sourceTree = "<group>"; };
 		CAB752C22635B1B000CA5396 /* XcoatOfPaint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcoatOfPaint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB752C52635B1B000CA5396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAB752C72635B1B000CA5396 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
