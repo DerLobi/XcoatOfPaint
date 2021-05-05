@@ -54,8 +54,10 @@ class XcodeManager {
     }
 
     private var iconFromICNS: NSImage? {
-        guard let icnsURL = xcodeURL?.appendingPathComponent("Contents/Resources/Xcode.icns") else { return nil }
-        let data = try? Data(contentsOf: icnsURL)
+        guard let icnsURL = xcodeURL?.appendingPathComponent("Contents/Resources/Xcode.icns"),
+              let betaIcnsURL = xcodeURL?.appendingPathComponent("Contents/Resources/XcodeBeta.icns")
+        else { return nil }
+        let data = (try? Data(contentsOf: icnsURL)) ?? (try? Data(contentsOf: betaIcnsURL))
         let image = data.flatMap(NSImage.init(data:))
         return image
     }
@@ -63,7 +65,7 @@ class XcodeManager {
     var iconFromAssetCatalog: NSImage? {
         guard let path = xcodeURL?.appendingPathComponent("Contents/Resources/Assets.car").path else { return nil }
         let catalog = try? AssetsCatalog(path: path)
-        let imageSet = catalog?.imageSet(withName: "Xcode")
+        let imageSet = catalog?.imageSets.first(where: { $0.name == "Xcode" || $0.name == "XcodeBeta" })
         let mutableData = NSMutableData()
 
         guard let bestImage = imageSet?.namedImages
