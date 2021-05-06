@@ -21,7 +21,7 @@ Just download the project and _"Build and Run"_ from Xcode.
 * Change hue, saturation and brightness to your liking
 * Click on "Replace Xcode Icon"
 
-If you use an Xcode version that you directly downloaded from Apple's Developer website, the icon will be replaced automatically. If Xcode is running, the Dock will be reloaded so that the icon change takes effect immediately.
+If you use an Xcode version that you directly downloaded from Apple's Developer website, the icon will be replaced automatically.
 
 If you use the App Store version however, the app is owned by the "system" user, so we can't change it directly. An error message will appear and you can choose to open the "Get Info" dialog for Xcode. The new icon file is copied to the clipboard, so you can select the existing icon in the "Get Info" dialog and paste by pressing ⌘+v.
 
