@@ -7,7 +7,6 @@
 
 import AppKit
 
-
 class FileDropImageView: NSImageView {
 
     var didReceiveFile: ((URL) -> Void)?

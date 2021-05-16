@@ -9,6 +9,8 @@ import Cocoa
 import CoreImage.CIFilterBuiltins
 import Combine
 
+// swiftlint:disable function_body_length identifier_name
+
 // https://github.com/trav-ma/TMReplaceColorHue/blob/master/TMReplaceColorHue/ViewController.swift
 class ImageEditor: NSObject {
 
@@ -58,8 +60,8 @@ class ImageEditor: NSObject {
         let size = 64
         var cubeData = [Float](repeating: 0, count: size * size * size * 4)
         var rgb: [Float] = [0, 0, 0]
-        var hsv: (h : Float, s : Float, v : Float)
-        var newRGB: (r : Float, g : Float, b : Float)
+        var hsv: (h: Float, s: Float, v: Float)
+        var newRGB: (r: Float, g: Float, b: Float)
         var offset = 0
         for z in 0 ..< size {
             rgb[2] = Float(z) / Float(size) // blue value
@@ -80,12 +82,12 @@ class ImageEditor: NSObject {
                             hsv.s += saturationAdjustment
                         }
 
-                        newRGB = HSVtoRGB(hsv.h, s:hsv.s, v:hsv.v)
+                        newRGB = HSVtoRGB(hsv.h, s: hsv.s, v: hsv.v)
                     } else {
                         hsv.s += saturationAdjustment
                         hsv.v += (brightnessAdjustment * hsv.v)
                         hsv.h -= hueAdjustment
-                        newRGB = HSVtoRGB(hsv.h, s:hsv.s, v:hsv.v)
+                        newRGB = HSVtoRGB(hsv.h, s: hsv.s, v: hsv.v)
                     }
                     cubeData[offset] = newRGB.r
                     cubeData[offset+1] = newRGB.g
@@ -108,5 +110,5 @@ class ImageEditor: NSObject {
             else { return nil }
         return NSImage(cgImage: outputImageRef, size: inputImage.size)
     }
-    
+
 }
