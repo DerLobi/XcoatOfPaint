@@ -12,6 +12,7 @@
 		CA09FF7726372F8500EAD209 /* CoreUI_Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA09FF7226372F8500EAD209 /* CoreUI_Swift.swift */; };
 		CA09FF912637312C00EAD209 /* CoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA09FF902637312C00EAD209 /* CoreUI.framework */; };
 		CA09FF922637312C00EAD209 /* CoreUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA09FF902637312C00EAD209 /* CoreUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CA915A3A26516A52006B5F7D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA915A3926516A52006B5F7D /* ViewModel.swift */; };
 		CAB752C62635B1B000CA5396 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB752C52635B1B000CA5396 /* AppDelegate.swift */; };
 		CAB752C82635B1B000CA5396 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB752C72635B1B000CA5396 /* ViewController.swift */; };
 		CAB752CA2635B1B100CA5396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB752C92635B1B100CA5396 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		CA09FF7226372F8500EAD209 /* CoreUI_Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreUI_Swift.swift; sourceTree = "<group>"; };
 		CA09FF7B26372FC000EAD209 /* XcoatOfPaint-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XcoatOfPaint-Bridging-Header.h"; sourceTree = "<group>"; };
 		CA09FF902637312C00EAD209 /* CoreUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreUI.framework; path = "$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/CoreUI.framework"; sourceTree = "<group>"; };
+		CA915A3926516A52006B5F7D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		CAB752C22635B1B000CA5396 /* XcoatOfPaint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcoatOfPaint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB752C52635B1B000CA5396 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAB752C72635B1B000CA5396 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				CAB752C72635B1B000CA5396 /* ViewController.swift */,
 				CAB752CF2635B1B100CA5396 /* XcoatOfPaint.entitlements */,
 				CAB752D92635B28700CA5396 /* XcodeManager.swift */,
+				CA915A3926516A52006B5F7D /* ViewModel.swift */,
 			);
 			path = XcoatOfPaint;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 				CAB752BF2635B1B000CA5396 /* Frameworks */,
 				CAB752C02635B1B000CA5396 /* Resources */,
 				CA09FF932637312C00EAD209 /* Embed Frameworks */,
+				CA915A3B26518534006B5F7D /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -220,6 +224,7 @@
 				CA09FF7726372F8500EAD209 /* CoreUI_Swift.swift in Sources */,
 				CA09FF7526372F8500EAD209 /* ImageSet.swift in Sources */,
 				CAB752E02635C27400CA5396 /* RGBtoHSV.swift in Sources */,
+				CA915A3A26516A52006B5F7D /* ViewModel.swift in Sources */,
 				CAB752D72635B1F400CA5396 /* ImageEditor.swift in Sources */,
 				CAB752C82635B1B000CA5396 /* ViewController.swift in Sources */,
 				CAB752DD2635B92100CA5396 /* FileDropImageView.swift in Sources */,
@@ -368,7 +373,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
@@ -377,7 +382,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.christian-lobach.XcoatOfPaint";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "XcoatOfPaint/XcoatOfPaint-Bridging-Header.h";
@@ -394,7 +399,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
@@ -403,7 +408,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.christian-lobach.XcoatOfPaint";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "XcoatOfPaint/XcoatOfPaint-Bridging-Header.h";
