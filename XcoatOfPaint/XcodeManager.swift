@@ -67,8 +67,11 @@ class XcodeManager: NSObject {
 
     var appIcon: NSImage? {
         guard let xcodeURL = appURL else { return nil }
-        return icon(["Xcode", "XcodeBeta", "AppIcon"], fromAssetCatalogRelativeToURL: xcodeURL)
-            ?? iconFromICNS(["Xcode.icns", "XcodeBeta.icns", "AppIcon.icns"], relativeToURL: xcodeURL)
+        return icon(["Xcode", "XcodeBeta", "AppIcon", "Instruments"], fromAssetCatalogRelativeToURL: xcodeURL)
+            ?? iconFromICNS(["Xcode.icns",
+                             "XcodeBeta.icns",
+                             "AppIcon.icns",
+                             "Instruments.icns"], relativeToURL: xcodeURL)
     }
 
     private func iconFromICNS(_ icnsFiles: [String], relativeToURL url: URL) -> NSImage? {
