@@ -15,19 +15,24 @@ struct RecoveryAction {
 struct XcodeManagerError: LocalizedError {
 
     fileprivate enum ErrorType {
-        case needsToChangeInGetInfo
-        case needsToRemoveInGetInfo
-        case iconChangeFailed
+        case needsToChangeInGetInfo(appName: String)
+        case needsToRemoveInGetInfo(appName: String)
+        case iconChangeFailed(appName: String)
     }
 
     fileprivate var errorType: ErrorType
 
-    var recoveryAction: RecoveryAction? = nil
+    var recoveryAction: RecoveryAction?
 
     var failureReason: String? {
         switch errorType {
         case .needsToChangeInGetInfo, .needsToRemoveInGetInfo:
-            return "If you have installed Xcode from the App Store, this app doesn't have enough permissions to change the app icon autimatically.\nYou can change or remove the icon manually via the \"Get Info\" dialog."
+            // swiftlint:disable line_length
+            return """
+                If you have installed Xcode from the App Store, this app doesn't have enough permissions to change the app icon automatically.
+                You can change or remove the icon manually via the \"Get Info\" dialog.
+                """
+        // swiftlint:enable line_length
         default:
             return nil
         }
@@ -35,37 +40,48 @@ struct XcodeManagerError: LocalizedError {
 
     var recoverySuggestion: String? {
         switch errorType {
-        case .needsToChangeInGetInfo:
-            return "Select the existing icon in the top of the \"Xcode Info\" dialog and press ⌘ + V."
-        case .needsToRemoveInGetInfo:
-            return "Click on the icon in the \"Xcode Info\" dialog and press the delete key on your keyboard."
+        case .needsToChangeInGetInfo(let appName):
+            return "Select the existing icon in the top of the \"\(appName) Info\" dialog and press ⌘ + V."
+        case .needsToRemoveInGetInfo(let appName):
+            return "Click on the icon in the \"\(appName) Info\" dialog and press the delete key on your keyboard."
         default:
             return nil
         }
     }
 }
 
-class XcodeManager {
+class XcodeManager: NSObject {
 
-    var xcodeURL: URL?
-
-    var xcodeIcon: NSImage? {
-        iconFromAssetCatalog ?? iconFromICNS
+    @objc dynamic var appURL: URL? {
+        didSet {
+            guard var name = appURL?.lastPathComponent, name.hasSuffix(".app") else {
+                appName = "Xcode"
+                return
+            }
+            name.removeLast(4)
+            appName = name
+        }
     }
 
-    private var iconFromICNS: NSImage? {
-        guard let icnsURL = xcodeURL?.appendingPathComponent("Contents/Resources/Xcode.icns"),
-              let betaIcnsURL = xcodeURL?.appendingPathComponent("Contents/Resources/XcodeBeta.icns")
-        else { return nil }
-        let data = (try? Data(contentsOf: icnsURL)) ?? (try? Data(contentsOf: betaIcnsURL))
+    @objc dynamic private(set) var appName: String = "Xcode"
+
+    var appIcon: NSImage? {
+        guard let xcodeURL = appURL else { return nil }
+        return icon(["Xcode", "XcodeBeta", "AppIcon"], fromAssetCatalogRelativeToURL: xcodeURL)
+            ?? iconFromICNS(["Xcode.icns", "XcodeBeta.icns", "AppIcon.icns"], relativeToURL: xcodeURL)
+    }
+
+    private func iconFromICNS(_ icnsFiles: [String], relativeToURL url: URL) -> NSImage? {
+        let icnsURLs = icnsFiles.map({ url.appendingPathComponent("Contents/Resources/\($0)") })
+        let data = icnsURLs.compactMap { try? Data(contentsOf: $0) }.first
         let image = data.flatMap(NSImage.init(data:))
         return image
     }
 
-    var iconFromAssetCatalog: NSImage? {
-        guard let path = xcodeURL?.appendingPathComponent("Contents/Resources/Assets.car").path else { return nil }
+    private func icon(_ imageSetNames: [String], fromAssetCatalogRelativeToURL url: URL) -> NSImage? {
+        let path = url.appendingPathComponent("Contents/Resources/Assets.car").path
         let catalog = try? AssetsCatalog(path: path)
-        let imageSet = catalog?.imageSets.first(where: { $0.name == "Xcode" || $0.name == "XcodeBeta" })
+        let imageSet = catalog?.imageSets.first(where: { imageSetNames.contains($0.name) })
         let mutableData = NSMutableData()
 
         guard let bestImage = imageSet?.namedImages
@@ -78,49 +94,49 @@ class XcodeManager {
                                                                  kUTTypePNG,
                                                                  1,
                                                                  nil)
-                else { return nil}
+        else { return nil}
         CGImageDestinationAddImage(destination, cgImage, nil)
         guard CGImageDestinationFinalize(destination) else { return nil }
 
-        let nsImage = NSImage(data: mutableData as Data)        
+        let nsImage = NSImage(data: mutableData as Data)
         return nsImage
     }
 
     func replaceIcon(with image: NSImage) throws {
-        guard let xcodeURL = xcodeURL else { return }
+        guard let appURL = appURL else { return }
         let iconChangeSuccessful = NSWorkspace.shared.setIcon(image,
-                                                 forFile: xcodeURL.path,
-                                                 options: [])
-        if iconChangeSuccessful { return }
-
-        let pasteboard = NSPasteboard.withUniqueName()
-        pasteboard.declareTypes([.fileURL], owner: nil)
-        (xcodeURL as NSURL).write(to: pasteboard)
-
-        throw XcodeManagerError(errorType: .needsToChangeInGetInfo,
-                                recoveryAction: RecoveryAction(title: "Open \"Xcode Info\" dialog") {
-            if NSPerformService("Finder/Show Info", pasteboard) {
-                let rep = image.tiffRepresentation
-                let generalPasteboard = NSPasteboard.general
-                generalPasteboard.clearContents()
-                generalPasteboard.setData(rep, forType: .tiff)
-            }
-        })
-    }
-
-    func restoreDefaultIcon() throws {
-        guard let xcodeURL = xcodeURL else { return }
-        let iconChangeSuccessful = NSWorkspace.shared.setIcon(nil,
-                                                              forFile: xcodeURL.path,
+                                                              forFile: appURL.path,
                                                               options: [])
         if iconChangeSuccessful { return }
 
         let pasteboard = NSPasteboard.withUniqueName()
         pasteboard.declareTypes([.fileURL], owner: nil)
-        (xcodeURL as NSURL).write(to: pasteboard)
-        
-        throw XcodeManagerError(errorType: .needsToRemoveInGetInfo,
-                                recoveryAction: RecoveryAction(title: "Open \"Xcode Info\" dialog") {
+        (appURL as NSURL).write(to: pasteboard)
+
+        throw XcodeManagerError(errorType: .needsToChangeInGetInfo(appName: appName),
+                                recoveryAction: RecoveryAction(title: "Open \"\(appName) Info\" dialog") {
+                                    if NSPerformService("Finder/Show Info", pasteboard) {
+                                        let rep = image.tiffRepresentation
+                                        let generalPasteboard = NSPasteboard.general
+                                        generalPasteboard.clearContents()
+                                        generalPasteboard.setData(rep, forType: .tiff)
+                                    }
+                                })
+    }
+
+    func restoreDefaultIcon() throws {
+        guard let appURL = appURL else { return }
+        let iconChangeSuccessful = NSWorkspace.shared.setIcon(nil,
+                                                              forFile: appURL.path,
+                                                              options: [])
+        if iconChangeSuccessful { return }
+
+        let pasteboard = NSPasteboard.withUniqueName()
+        pasteboard.declareTypes([.fileURL], owner: nil)
+        (appURL as NSURL).write(to: pasteboard)
+
+        throw XcodeManagerError(errorType: .needsToRemoveInGetInfo(appName: appName),
+                                recoveryAction: RecoveryAction(title: "Open \"\(appName) Info\" dialog") {
                                     NSPerformService("Finder/Show Info", pasteboard)
                                 })
     }

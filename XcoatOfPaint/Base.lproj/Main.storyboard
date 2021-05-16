@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -455,7 +455,7 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="FKT-ZC-9G8"/>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.imageEditor.outputImage" id="Y5i-LU-Efc"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.viewModel.imageEditor.outputImage" id="Z30-zj-Lrd"/>
                                 </connections>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aSS-UY-t9X">
@@ -466,7 +466,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="self.imageEditor.inputImage" id="dTR-KL-Tuk">
+                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="self.viewModel.imageEditor.inputImage" id="W1l-k0-q57">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
@@ -480,12 +480,12 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="4ft-ui-L25"/>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.imageEditor.inputImage" id="hk9-k4-zod"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.viewModel.imageEditor.inputImage" id="Oph-Wg-NXD"/>
                                 </connections>
                             </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y0p-Il-trM">
-                                <rect key="frame" x="15" y="98" width="198" height="32"/>
-                                <buttonCell key="cell" type="push" title="Restore default Xcode icon" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gzm-d4-GBc">
+                                <rect key="frame" x="36" y="98" width="156" height="32"/>
+                                <buttonCell key="cell" type="push" title="Restore default icon" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gzm-d4-GBc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -497,21 +497,21 @@
                                 <rect key="frame" x="296" y="102" width="124" height="28"/>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.5" tickMarkPosition="above" sliderType="linear" id="OJK-v7-5hC"/>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.imageEditor.destCenterHueAngle" id="a0v-Uz-Ztq"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.viewModel.imageEditor.destCenterHueAngle" id="ehd-14-44f"/>
                                 </connections>
                             </slider>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lg1-dx-ifJ">
                                 <rect key="frame" x="300" y="78" width="116" height="28"/>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="-1" maxValue="1" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="Std-aH-WNS"/>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.imageEditor.saturationAdjustment" id="pJm-aY-ych"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.viewModel.imageEditor.saturationAdjustment" id="Xxe-OC-2t0"/>
                                 </connections>
                             </slider>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ed4-ha-IOZ">
                                 <rect key="frame" x="300" y="54" width="116" height="28"/>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="-1" maxValue="1" tickMarkPosition="below" numberOfTickMarks="1" sliderType="linear" id="lex-P8-hXx"/>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.imageEditor.brightnessAdjustment" id="QSw-0N-ujb"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.viewModel.imageEditor.brightnessAdjustment" id="IIG-nL-lda"/>
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oAs-GL-fRd">
@@ -546,6 +546,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="replaceIcon:" target="XfG-lQ-9wD" id="bcH-sQ-fOu"/>
+                                    <binding destination="XfG-lQ-9wD" name="title" keyPath="self.viewModel.replaceIconButtonTitle" id="RIo-sK-8eF"/>
                                 </connections>
                             </button>
                         </subviews>

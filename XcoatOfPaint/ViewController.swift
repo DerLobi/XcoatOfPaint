@@ -11,33 +11,26 @@ class ViewController: NSViewController {
 
     @IBOutlet private weak var sourceImageView: FileDropImageView!
 
-    private let xcodeManager = XcodeManager()
-    @objc private let imageEditor = ImageEditor()
+    @objc private let viewModel = ViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         sourceImageView.didReceiveFile = { [weak self] fileURL in
-            self?.xcodeManager.xcodeURL = fileURL
-            self?.imageEditor.inputImage = self?.xcodeManager.xcodeIcon
+            self?.viewModel.loadApp(at: fileURL)
+        }
+
+        viewModel.errorHandler = { [weak self] error in
+            self?.handleError(error)
         }
     }
 
     @IBAction private func replaceIcon(_ sender: Any) {
-        guard let outputImage = imageEditor.outputImage else { return }
-        do {
-            try xcodeManager.replaceIcon(with: outputImage)
-        } catch {
-            handleError(error)
-        }
+        viewModel.replaceIcon()
     }
 
     @IBAction private func restoreDefaultIcon(_ sender: Any) {
-        do {
-            try xcodeManager.restoreDefaultIcon()
-        } catch {
-            handleError(error)
-        }
+        viewModel.restoreDefaultIcon()
     }
 
     private func handleError(_ error: Error) {
