@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Cocoa
 import Combine
 
 class ViewModel: NSObject {
@@ -50,6 +51,25 @@ class ViewModel: NSObject {
             try xcodeManager.restoreDefaultIcon()
         } catch {
             errorHandler?(error)
+        }
+    }
+
+    func saveIcon() {
+        guard let outputImage = imageEditor.outputImage,
+              let cgImage = outputImage.cgImage(forProposedRect: nil, context: nil, hints: nil) else { return }
+
+        let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+        bitmapRep.size = outputImage.size
+        let pngData = bitmapRep.representation(using: .png, properties: [:])
+
+        let savePanel = NSSavePanel()
+        savePanel.canCreateDirectories = true
+        savePanel.showsTagField = false
+        savePanel.nameFieldStringValue = "XcoatOfPaint.png"
+        savePanel.level = .modalPanel
+        savePanel.begin { result in
+            guard let url = savePanel.url, result == .OK else { return }
+            try? pngData?.write(to: url)
         }
     }
 }

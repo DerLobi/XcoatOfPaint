@@ -29,6 +29,10 @@ class ViewController: NSViewController {
         viewModel.replaceIcon()
     }
 
+    @IBAction func saveDocument(_ sender: Any) {
+        viewModel.saveIcon()
+    }
+
     @IBAction private func restoreDefaultIcon(_ sender: Any) {
         viewModel.restoreDefaultIcon()
     }
